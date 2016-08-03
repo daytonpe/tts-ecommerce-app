@@ -52,6 +52,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% @categories.each do |cat| %>
+            <!-- The cat_id is actualy just a name we are initializing right here. We could call it meow_id if we wanted -->
             <li><%= link_to cat.name, categorical_path(cat_id: cat.id) %></li>
             <% end %>
           </ul>
@@ -65,6 +66,9 @@
             <% end %>
           </ul>
         </li>
+
+
+        <li><%=link_to "My Cart", view_order_path %></li>
       
 
       </ul>
