@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :items_in_cart
 
 
   protect_from_forgery with: :exception
@@ -25,6 +26,15 @@ class ApplicationController < ActionController::Base
   	if @brands == nil
   		@brands = Product.pluck(:brand).sort
   	end
+  end
+
+  def items_in_cart
+    @line_items = LineItem.all
+    @items_in_cart = 0
+    @line_items.each do |line_item|
+      @items_in_cart += line_item.quantity
+    end
+    @items_in_cart
   end
 
   protected

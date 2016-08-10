@@ -34,13 +34,16 @@ class CartController < ApplicationController
 		@order.grand_total = sum + @order.sales_tax
 		@order.save
 
+		@line_items = LineItem.all
 		@line_items.each do |line_item|
 			line_item.product.quantity -= line_item.quantity
 			line_item.product.save
 		end
-
 		LineItem.destroy_all
+
+
 	end
+
 
   def order_complete
     @order = Order.find(params[:order_id])
@@ -58,18 +61,12 @@ class CartController < ApplicationController
       :currency => 'usd'
     )
 
+
+
     rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
   end
 
-  def items_in_cart
-  	@line_items = LineItem.all
-  	sum = 0
-  	@line_items.each do |line_item|
-  		sum += line_item.quantity
-  	end
-  	sum
-  end
 		
 end

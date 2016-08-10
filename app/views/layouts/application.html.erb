@@ -69,7 +69,7 @@
         </li>
 
 
-        <li><%=link_to ("My Cart (" +LineItem.all.count.to_s+")"), view_order_path %></li>
+        <li><%=link_to ("My Cart (" +@items_in_cart.to_s+")"), view_order_path %></li>
       
 
       </ul>

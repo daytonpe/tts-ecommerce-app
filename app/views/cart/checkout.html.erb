@@ -28,6 +28,7 @@
 
 <%= button_to "Empty Cart", @order, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger btn-sm", form: {style: 'display:inline-block;'} %>
 
+<!-- STRIPE BUTTON -->
 <div style = 'display:inline-block;'>
   <%= form_tag order_complete_path do %>
     <div>
